@@ -81,8 +81,6 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
                         <p>Não há nenhum personagem com a descrição!</p>
                     </div>
                 }
-
-
             </ul>
 
             {error &&

@@ -32,7 +32,7 @@ function App() {
   const [filteredData, setFilteredData]: [PersonagemInterface[], (data: PersonagemInterface[]) => void] = React.useState(defaultdata);
   const [dataSearch, setDataSearch]: [string, (e: string) => void] = React.useState("")
 
-  const [clickFavoritos, setClickFavoritos]: [boolean, (click: boolean) => void] = React.useState<boolean>(true);
+  const [clickFavoritos, setClickFavoritos]: [boolean, (click: boolean) => void] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     axios
@@ -89,7 +89,10 @@ function App() {
           setClickFavoritos={setClickFavoritos}
         />
 
-        <Favoritos clickFavoritos={clickFavoritos}/>
+        <Favoritos
+          clickFavoritos={clickFavoritos}
+          setClickFavoritos={setClickFavoritos}
+        />
 
       </ThemeProvider>
 
