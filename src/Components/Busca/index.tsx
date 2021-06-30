@@ -11,21 +11,21 @@ interface Props {
     filteredData: PersonagemInterface[],
     setFilteredData: (data: PersonagemInterface[]) => void
     data: PersonagemInterface[],
+    dataSearch: string,
+    setDataSearch: (e: string) => void
 }
 
-export const Busca: React.FC<Props> = ({ filteredData, setFilteredData, data, }: Props): JSX.Element => {
+export const Busca: React.FC<Props> = ({ filteredData, setFilteredData, data, dataSearch, setDataSearch}: Props): JSX.Element => {
 
 
 
     const handleSearch = (e: string) => {
 
-        let entrada = e.toLowerCase();
+        setDataSearch(e.toLowerCase());
         let result = [];
 
-        console.log(entrada);
-
         result = data.filter((item) => {
-            return item.name.search(entrada) !== -1;
+            return item.name.search(dataSearch) !== -1;
         })
 
         setFilteredData(result);

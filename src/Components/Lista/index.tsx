@@ -8,6 +8,9 @@ import { CancelTokenSource } from "axios";
 //icons
 import { BsHeart, BsHeartFill } from "react-icons/bs"
 import { MdExpandMore } from "react-icons/md"
+//img
+import noData from "../../assets/img/nodata.png"
+import { Loading } from '../Loading';
 
 interface Props {
     filteredData: PersonagemInterface[];
@@ -15,9 +18,10 @@ interface Props {
     error: string;
     loading: boolean;
     cancelTokenSource: CancelTokenSource;
+    dataSearch: string;
 }
 
-const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSource }: Props): JSX.Element => {
+const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSource, dataSearch }: Props): JSX.Element => {
 
     const handleCancelClick = () => {
         if (cancelTokenSource) {
@@ -29,10 +33,12 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
     return (
         <s.Container className="container">
             {loading && (
-                <button onClick={handleCancelClick}>Cancelar</button>
+                <>
+                    <Loading handleCancelClick={handleCancelClick} />
+                </>
             )}
             <ul>
-                {filteredData.map((item: PersonagemInterface) => {
+                {filteredData.length >= 1 ? filteredData.map((item: PersonagemInterface) => {
                     return (
                         <li key={item._id}>
                             <div className="wrap-img">
@@ -56,9 +62,24 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
                             </div>
                         </li>
                     )
-                })}
+                })
+                    :
+                    dataSearch &&
+                    <div className="wrapper-no-data">
+                        <img src={noData} alt="personagem" />
+                        <p>Não há nenhum personagem com a descrição!</p>
+                    </div>
+                }
+
+
             </ul>
-            {error && <p className="error">{error}</p>}
+
+            {error &&
+                <div className="wrapper-error">
+                    <img src={noData} alt="personagem" />
+                    <p className="error">{error}</p>
+                </div>
+            }
         </s.Container>
     )
 }

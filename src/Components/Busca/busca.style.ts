@@ -5,6 +5,11 @@ export const Container = styled.div`
     height: fit-content;
     margin:0 auto;
 
+    @media (min-width: 600px){
+        width: 550px;
+        margin: 0 auto;
+    }
+
         input{
             width: 100%;
             height: 55px;
@@ -12,5 +17,8 @@ export const Container = styled.div`
             border-radius: 10px;
             border: none;
             outline: none;
+            margin: 0 auto;
+
         }
+        
 `

@@ -29,6 +29,7 @@ function App() {
   const [cancelTokenSource, setCancelTokenSource]: [CancelTokenSource, (cancelTokenSource: CancelTokenSource) => void] = React.useState(cancelToken.source());
 
   const [filteredData, setFilteredData]: [PersonagemInterface[], (data: PersonagemInterface[]) => void] = React.useState(defaultdata);
+  const [dataSearch, setDataSearch]: [string, (e: string) => void] = React.useState("")
 
   React.useEffect(() => {
     axios
@@ -68,8 +69,8 @@ function App() {
         <GlobalStyles />
 
         <Banner />
-        <Busca filteredData={filteredData} setFilteredData={setFilteredData} data={data} />
-        <Lista filteredData={filteredData} error={error} loading={loading} cancelTokenSource={cancelTokenSource} />
+        <Busca filteredData={filteredData} setFilteredData={setFilteredData} data={data} dataSearch={dataSearch} setDataSearch={setDataSearch} />
+        <Lista filteredData={filteredData} error={error} loading={loading} cancelTokenSource={cancelTokenSource} dataSearch={dataSearch}/>
 
       </ThemeProvider>
 

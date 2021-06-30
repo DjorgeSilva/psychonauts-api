@@ -14,7 +14,8 @@ export const Container = styled.div`
         padding: 0;
 
         @media (min-width: 600px){
-            width: 600px;
+            width: 550px;
+            margin: 0 auto;
         }
 
         li{
@@ -133,7 +134,44 @@ export const Container = styled.div`
         }
     }
 
-    .error {
-        color: red;
+    .wrapper-no-data, .wrapper-error{
+        width: 100%;
+        height: fit-content;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        background: ${props=> props.theme.corPadrao};
+        padding: 20px 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            width: 200px;
+            margin-bottom: 20px;;
+        }
+
+        p{
+            color: ${props=> props.theme.corBranco};
+            text-align: center;
+
+            @media (max-width: 350px){
+                width: 80%;
+                
+            }
+        }
+        
     }
+
+    .wrapper-error{
+        width: 90%;
+        background: red;
+        margin: 0 auto;
+        
+        @media (min-width: 600px){
+            width: 550px;
+        }
+    }
+
 `
