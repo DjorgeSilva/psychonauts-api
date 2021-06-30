@@ -1,23 +1,38 @@
 import React from 'react';
+//packages
+import { ThemeProvider } from 'styled-components';
 import axios, { CancelTokenSource } from "axios";
-import { IPost } from './interfaces/data.interface';
-import Posts from "./Components/Posts/index"
+//interfaces
+import { PersonagemInterface } from './interfaces/data.interface';
+//styles
+import { GlobalStyles } from './assets/GlobalStyle/GlobalStyles';
+//components
+import Lista from "./Components/Lista/index"
+import { Banner } from "./Components/Banner/index"
+import { Busca } from './Components/Busca';
 
 
 function App() {
 
-  const defaultPosts: IPost[] = [];
+  const theme = {
+    corPadrao: "#07A876",
+    corSecudaria: "#1F1F1F",
+    corBranco: "#fff",
+  }
 
-  const [posts, setPosts]: [IPost[], (posts: IPost[]) => void] = React.useState(defaultPosts);
+  const defaultdata: PersonagemInterface[] = [];
+  const [data, setdata]: [PersonagemInterface[], (data: PersonagemInterface[]) => void] = React.useState(defaultdata);
   const [loading, setLoading]: [boolean, (loading: boolean) => void] = React.useState<boolean>(true);
   const [error, setError]: [string, (error: string) => void] = React.useState('');
 
   const cancelToken = axios.CancelToken; //cria token pra cancelar 
   const [cancelTokenSource, setCancelTokenSource]: [CancelTokenSource, (cancelTokenSource: CancelTokenSource) => void] = React.useState(cancelToken.source());
 
+  const [filteredData, setFilteredData]: [PersonagemInterface[], (data: PersonagemInterface[]) => void] = React.useState(defaultdata);
+
   React.useEffect(() => {
     axios
-      .get<IPost[]>('https://jsonplaceholder.typicode.com/posts', {
+      .get<PersonagemInterface[]>('https://psychonauts-api.herokuapp.com/api/characters', {
         cancelToken: cancelTokenSource.token,
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +40,8 @@ function App() {
         timeout: 10000,
       })
       .then((response) => {
-        setPosts(response.data);
+        setdata(response.data);
+        setFilteredData(response.data)
         setLoading(false);
       })
       .catch((ex) => {
@@ -40,13 +56,23 @@ function App() {
         setLoading(false);
 
         cancelTokenSource.cancel("Usuário cancelou a operação");
+
       });
   }, []);
 
 
   return (
     <React.Fragment>
-      <Posts posts={posts} error={error} loading={loading} cancelTokenSource={cancelTokenSource} />
+
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+
+        <Banner />
+        <Busca filteredData={filteredData} setFilteredData={setFilteredData} data={data} />
+        <Lista filteredData={filteredData} error={error} loading={loading} cancelTokenSource={cancelTokenSource} />
+
+      </ThemeProvider>
+
     </React.Fragment>
   );
 }
