@@ -174,4 +174,29 @@ export const Container = styled.div`
         }
     }
 
+    .wrapper-icone-favoritos{
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+        background: ${props=> props.theme.corPadrao};
+        border-radius: 50px;
+
+        position: fixed;
+        bottom: 20px;
+        right: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #fff;
+
+        &:hover{
+            background: red;
+        }
+
+        .icone-favorito{
+            color:  ${props=> props.theme.corBranco};
+        }
+    }
+
 `

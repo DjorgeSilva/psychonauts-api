@@ -10,6 +10,7 @@ import { GlobalStyles } from './assets/GlobalStyle/GlobalStyles';
 import Lista from "./Components/Lista/index"
 import { Banner } from "./Components/Banner/index"
 import { Busca } from './Components/Busca';
+import { Favoritos } from './Components/Favoritos';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
 
   const [filteredData, setFilteredData]: [PersonagemInterface[], (data: PersonagemInterface[]) => void] = React.useState(defaultdata);
   const [dataSearch, setDataSearch]: [string, (e: string) => void] = React.useState("")
+
+  const [clickFavoritos, setClickFavoritos]: [boolean, (click: boolean) => void] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     axios
@@ -69,8 +72,24 @@ function App() {
         <GlobalStyles />
 
         <Banner />
-        <Busca filteredData={filteredData} setFilteredData={setFilteredData} data={data} dataSearch={dataSearch} setDataSearch={setDataSearch} />
-        <Lista filteredData={filteredData} error={error} loading={loading} cancelTokenSource={cancelTokenSource} dataSearch={dataSearch}/>
+        <Busca
+          filteredData={filteredData}
+          setFilteredData={setFilteredData}
+          data={data} dataSearch={dataSearch}
+          setDataSearch={setDataSearch}
+        />
+
+        <Lista
+          filteredData={filteredData}
+          error={error}
+          loading={loading}
+          cancelTokenSource={cancelTokenSource}
+          dataSearch={dataSearch}
+          clickFavoritos={clickFavoritos}
+          setClickFavoritos={setClickFavoritos}
+        />
+
+        <Favoritos clickFavoritos={clickFavoritos}/>
 
       </ThemeProvider>
 

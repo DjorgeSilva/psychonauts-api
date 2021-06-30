@@ -8,6 +8,10 @@ export const Container = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        @media (min-width: 950px){
+            object-position: 20% 20%
+        }
     }
 `
 export const Logo = styled.div`

@@ -2,7 +2,7 @@ import React from 'react'
 //interface
 import { PersonagemInterface, PsiPower } from '../../interfaces/data.interface';
 //styles
-import * as s from "./posts.style"
+import * as s from "./lista.style"
 //axios
 import { CancelTokenSource } from "axios";
 //icons
@@ -11,6 +11,8 @@ import { MdExpandMore } from "react-icons/md"
 //img
 import noData from "../../assets/img/nodata.png"
 import { Loading } from '../Loading';
+//packages
+import { OverlayTrigger, Tooltip } from "react-bootstrap"
 
 interface Props {
     filteredData: PersonagemInterface[];
@@ -19,15 +21,24 @@ interface Props {
     loading: boolean;
     cancelTokenSource: CancelTokenSource;
     dataSearch: string;
+    clickFavoritos: boolean;
+    setClickFavoritos: (data: boolean) => void
 }
 
-const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSource, dataSearch }: Props): JSX.Element => {
+const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSource, dataSearch, clickFavoritos, setClickFavoritos }: Props): JSX.Element => {
 
     const handleCancelClick = () => {
         if (cancelTokenSource) {
             cancelTokenSource.cancel("Usuário cancelou a operação");
         }
     };
+
+
+    const renderTooltip = (props: any) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Meus Favoritos
+        </Tooltip>
+    );
 
 
     return (
@@ -80,7 +91,20 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
                     <p className="error">{error}</p>
                 </div>
             }
+
+            <OverlayTrigger 
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}>
+
+                <div className="wrapper-icone-favoritos" onClick={() => setClickFavoritos(!clickFavoritos)}>
+                    <BsHeartFill className="icone-favorito" />
+                </div>
+
+            </OverlayTrigger>
+
         </s.Container>
+
     )
 }
 

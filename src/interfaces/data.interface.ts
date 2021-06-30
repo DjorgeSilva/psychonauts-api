@@ -14,3 +14,10 @@ export interface PersonagemInterface {
     __v: number;
 }
 
+
+export interface actionFavoritos {
+    type: string,
+    payload: {
+        personagem: PersonagemInterface
+    }
+}
