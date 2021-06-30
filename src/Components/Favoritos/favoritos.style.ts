@@ -14,13 +14,13 @@ export const Container = styled.div.attrs((props: Props) => {
     };
 })`
     width: 90%;
-    height: 70vh;
-    background: ${props => props.theme.corBranco};
+    height: fit-content;
+    background: ${props => props.theme.corPadrao};
 
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 20px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     border-radius: 20px;
     box-shadow: 2px 2px 5px #333;
 
@@ -51,7 +51,7 @@ export const Container = styled.div.attrs((props: Props) => {
         border-radius: 5px;
         text-align: center;
         margin-top: 20px;
-        background: ${props => props.theme.corPadrao};
-        color: ${props => props.theme.corBranco};
+        background: ${props => props.theme.corBranco};
+        color: ${props => props.theme.corPadrao};
     }
 `

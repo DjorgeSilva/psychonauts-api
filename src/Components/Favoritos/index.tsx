@@ -6,6 +6,7 @@ import { IoClose } from 'react-icons/io5'
 //redux
 import { useSelector } from 'react-redux'
 import { TypeReducer } from '../../state/CombineReducers'
+import { ItemLista } from '../ItemLista'
 
 
 interface Props {
@@ -23,7 +24,9 @@ export const Favoritos: React.FC<Props> = ({ clickFavoritos, setClickFavoritos }
         <s.Container className="container" clickFavoritos={clickFavoritos}>
 
             <IoClose className="icone-close" onClick={() => setClickFavoritos(!clickFavoritos)} />
-            <h1>Favoritos</h1>
+            <h1>Meus Favoritos</h1>
+
+            <ItemLista filteredData={state} dataSearch='s' clickFavoritos={clickFavoritos} setClickFavoritos={setClickFavoritos} />
 
         </s.Container>
 

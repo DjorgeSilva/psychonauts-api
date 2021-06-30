@@ -15,9 +15,16 @@ export interface PersonagemInterface {
 }
 
 
-export interface actionFavoritos {
+export interface actionAdicionarFavoritos {
     type: string,
     payload: {
         personagem: PersonagemInterface
+    }
+}
+
+export interface actionRemoverFavoritos {
+    type: string,
+    payload: {
+        _id: string;
     }
 }

@@ -7,12 +7,12 @@ import * as s from "./lista.style"
 import { CancelTokenSource } from "axios";
 //icons
 import { BsHeart, BsHeartFill } from "react-icons/bs"
-import { MdExpandMore } from "react-icons/md"
 //img
 import noData from "../../assets/img/nodata.png"
 import { Loading } from '../Loading';
 //packages
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
+import { ItemLista } from '../ItemLista';
 
 interface Props {
     filteredData: PersonagemInterface[];
@@ -48,40 +48,8 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
                     <Loading handleCancelClick={handleCancelClick} />
                 </>
             )}
-            <ul>
-                {filteredData.length >= 1 ? filteredData.map((item: PersonagemInterface) => {
-                    return (
-                        <li key={item._id}>
-                            <div className="wrap-img">
-                                <img src={item.img} alt="personagem" />
-                            </div>
 
-                            <div className="wrap-txt">
-                                <p><span>Nome: </span>{item.name}</p>
-                                <p><span>Gênero: </span>{item.gender}</p>
-
-                                <div className="wrapper-icones">
-                                    <MdExpandMore className="icone-mais icone" />
-                                    <BsHeart className="icone-favoritos icone" />
-                                </div>
-
-                                {/* <p>{item.psiPowers.map((items:PsiPower) => {
-                                    return(
-                                        <li>{items.description}</li>
-                                    )
-                                })}</p> */}
-                            </div>
-                        </li>
-                    )
-                })
-                    :
-                    dataSearch &&
-                    <div className="wrapper-no-data">
-                        <img src={noData} alt="personagem" />
-                        <p>Não há nenhum personagem com a descrição!</p>
-                    </div>
-                }
-            </ul>
+            <ItemLista filteredData={filteredData} dataSearch={dataSearch} clickFavoritos={clickFavoritos} setClickFavoritos={setClickFavoritos}/>
 
             {error &&
                 <div className="wrapper-error">
@@ -90,7 +58,7 @@ const Lista: React.FC<Props> = ({ filteredData, error, loading, cancelTokenSourc
                 </div>
             }
 
-            <OverlayTrigger 
+            <OverlayTrigger
                 placement="left"
                 delay={{ show: 250, hide: 400 }}
                 overlay={renderTooltip}>
