@@ -34,4 +34,4 @@ Open [http://localhost:3000](http://localhost:3000) para visualizar no navegador
 
 # Funcionalidade
 
-Consumo de API Psychonauts https://psychonauts-api.herokuapp.com/api/characters e exibição como lista, com filtro de pesquisas e opções de adiconar e remove como favoritos
+Consumo de API Psychonauts https://psychonauts-api.herokuapp.com/api/characters e exibição como lista, com filtro de pesquisas e opções de adicionar e remover como favoritos
