@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Consumo de API Psychonauts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este repositório contém o teste para a vaga desenvolvedor front-end senior.
 
 ## Available Scripts
 
