@@ -21,7 +21,17 @@ Open [http://localhost:3000](http://localhost:3000) para visualizar no navegador
  - `./src/state` -- Pastas com arquivos `.ts` com configuração do redux, para disponibilizar o estado global.
 
 
-### `npm start`
-### `npm start`
-### `npm start`
-### `npm start`
+# Tecnologias 
+
+ - `ReactJs` 
+ - `Typescript`
+ - `Redux`
+ - `Styled-components`
+ - `Bootstrap`
+ - `react-router-dom`
+ - `react-icons`
+ - `axios` 
+
+# Funcionalidade
+
+Consumo de API Psychonauts https://psychonauts-api.herokuapp.com/api/characters e exibição como lista, com filtro de pesquisas e opções de adiconar e remove como favoritos
