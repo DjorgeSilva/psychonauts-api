@@ -2,7 +2,7 @@
 
 Este repositório contém o teste para a vaga desenvolvedor front-end senior.
 
-## npm install
+## `npm install`
 
 Instala as dependências do node
 
